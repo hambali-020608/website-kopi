@@ -31,6 +31,14 @@ class ProfileController extends Controller
     {
         $request->user()->fill($request->validated());
 
+        
+        if ($request->hasFile('image')) {
+            // Simpan gambar dan ambil path-nya
+            $path = $request->file('image')->store('profile-images', 'public');
+          
+            // Simpan path gambar ke kolom 'image' di tabel user
+            $request->user()->image = $path;
+        }
         if ($request->user()->isDirty('email')) {
             $request->user()->email_verified_at = null;
         }

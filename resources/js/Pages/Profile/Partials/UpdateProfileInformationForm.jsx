@@ -12,20 +12,22 @@ export default function UpdateProfileInformation({
 }) {
     const user = usePage().props.auth.user;
 
-    const { data, setData, patch, errors, processing, recentlySuccessful } =
+    const { data, setData, post, errors, processing, recentlySuccessful } =
         useForm({
             name: user.name,
             email: user.email,
+            image:user.image
         });
 
     const submit = (e) => {
         e.preventDefault();
 
-        patch(route('profile.update'));
+        post(route('profile.update'),{forceFormData:true});
     };
-
+    
     return (
         <section className={className}>
+            {console.log(data.image)}
             <header>
                 <h2 className="text-lg font-medium text-gray-900 dark:text-gray-100">
                     Profile Information
@@ -36,7 +38,7 @@ export default function UpdateProfileInformation({
                 </p>
             </header>
 
-            <form onSubmit={submit} className="mt-6 space-y-6">
+            <form onSubmit={submit} className="mt-6 space-y-6" encType='multipart/form-data'>
                 <div>
                     <InputLabel htmlFor="name" value="Name" />
 
@@ -67,7 +69,13 @@ export default function UpdateProfileInformation({
                     />
 
                     <InputError className="mt-2" message={errors.email} />
+                    
+<label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="file_input">Upload file</label>
+<input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="file_input_help" onChange={(e)=>setData('image',e.target.files[0])} id="file_input" type="file" />
+<p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">SVG, PNG, JPG or GIF (MAX. 800x400px).</p>
+
                 </div>
+                
 
                 {mustVerifyEmail && user.email_verified_at === null && (
                     <div>
