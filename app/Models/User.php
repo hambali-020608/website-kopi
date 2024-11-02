@@ -57,5 +57,8 @@ class User extends Authenticatable
     {
         return $this->hasMany(Comment::class,'author_id');
     }
-
+    public function getAvatarUrlAttribute() {; // Menggunakan asset untuk mendapatkan URL gambar
+        return $this->image ? asset('storage/' . $this->image) : "https://cdn.pixabay.com/photo/2018/11/13/21/43/avatar-3814049_1280.png";
+        
+    }
 }

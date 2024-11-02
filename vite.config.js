@@ -9,5 +9,15 @@ export default defineConfig({
             refresh: true,
         }),
         react(),
+
     ],
+    server: {
+        cors: {
+            origin: '*', // Ganti dengan asal yang diizinkan
+            methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+            allowedHeaders: ['Content-Type', 'Authorization'],
+            credentials: true,
+        },
+        // port: 3000, // Anda dapat menyesuaikan port jika diperlukan
+    },
 });

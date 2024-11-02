@@ -2,9 +2,10 @@ import Article from "@/Components/Article";
 import PostLayout from "@/Layouts/PostLayout";
 import Comment from "@/Components/Comments";
 import CommentLayout from "@/Layouts/CommentLayout";
-import { useForm } from "@inertiajs/react";
+import { Link, useForm, usePage } from "@inertiajs/react";
 
-export default function SinglePost({post,comment}){
+export default function SinglePost({post,comment,commentCount}){
+    const { can} = usePage().props
     const { data, setData, post:submitContent, processing } = useForm({
         comment: '',
         posting: post.id, // ID dari post yang sedang dilihat
@@ -16,13 +17,31 @@ export default function SinglePost({post,comment}){
         submitContent(route('comments.store'))
 
     }
+    function handleSubmitDelete(e){
+        e.preventDefault()
+        submitContent(route('post.delete',post.id))
+
+    }
     return(
         <>
+        <Link href={`/post/${post.id}`}>
+        Edit Post
+        </Link>
         <PostLayout type="Single">
             <Article  post={post}/>
+            {can.deletePost && (
+ <form class="mb-6" onSubmit={handleSubmitDelete}>
+ <button type="submit"
+     class="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-primary-700 rounded-lg bg-black">
+     Delete Post
+ </button>
+</form>
+            )}
+           
+      
         </PostLayout>
         
-        <CommentLayout>
+        <CommentLayout count={commentCount}>
         <form class="mb-6" onSubmit={handleSubmit}>
               <div class="py-2 px-4 mb-4 bg-white rounded-lg rounded-t-lg border border-gray-200 dark:bg-gray-800 dark:border-gray-700">
                   <label for="comment" class="sr-only">Your comment</label>
@@ -35,6 +54,7 @@ export default function SinglePost({post,comment}){
                   Post comment
               </button>
           </form>
+       
         {comment.map((comments)=>{
             console.log(comments)
             return(

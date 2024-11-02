@@ -1,6 +1,8 @@
 {
     "private": true,
     "type": "module",
+    "proxy": "http://192.168.206.216:8000",
+    
     "scripts": {
         "build": "vite build",
         "dev": "vite"
@@ -20,4 +22,5 @@
         "tailwindcss": "^3.2.1",
         "vite": "^5.0"
     }
+    
 }

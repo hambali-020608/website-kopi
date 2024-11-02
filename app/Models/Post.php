@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Post extends Model
 {
     protected $table='posts';
+    protected $fillable =['title','category_id','author_id','content'];
     protected $with=['category','author'];
     public function category(): BelongsTo
     {

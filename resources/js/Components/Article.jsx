@@ -15,7 +15,7 @@ export default function Article({post,type}){
               <p class="mb-5 font-light text-gray-500 dark:text-gray-400">{post.content}</p>
               <div class="flex justify-between items-center">
                   <div class="flex items-center space-x-4">
-                      <img class="w-7 h-7 rounded-full" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/jese-leos.png" alt="Jese Leos avatar" />
+                      <img class="w-7 h-7 rounded-full" src={post.authorAvatar} />
                       <span class="font-medium dark:text-white">
                           {post.author.name}
                       </span>

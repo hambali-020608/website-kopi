@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Middleware\CorsMiddleware;
 use App\Models\Post;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -15,7 +16,7 @@ Route::get('/', function () {
         'laravelVersion' => Application::VERSION,
         'phpVersion' => PHP_VERSION,
     ]);
-});
+})->middleware(CorsMiddleware::class);
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
@@ -24,9 +25,12 @@ Route::get('/dashboard', function () {
 
 Route::get('/blog',[PostController::class,'AllPost'])->middleware(['auth', 'verified'])->name('blog');
 Route::get('/blog/{post}',[PostController::class,'SinglePost'] )->middleware(['auth', 'verified']);
-
+Route::post('/delete/{post}',[PostController::class,'DeletePost'])->name('post.delete');
 
 Route::middleware('auth')->group(function () {
+    Route::get('/post/{post}',[PostController::class,'editPost']);
+    Route::get('/posting',[PostController::class,'PostForm']);
+    Route::post('/posting',[PostController::class,'PostStore'])->name('post.store');
     Route::post('/comments',[PostController::class,'commentStore'])->name('comments.store');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update');
