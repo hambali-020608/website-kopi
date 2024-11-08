@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\CoffeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Middleware\CorsMiddleware;
+use App\Models\Coffe;
 use App\Models\Post;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -11,16 +13,22 @@ use Inertia\Inertia;
 Route::get('/', function () {
     return Inertia::render('Welcome', [
         'title'=>"Home",
+        'coffe'=>Coffe::all(),
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
+       
     ]);
 })->middleware(CorsMiddleware::class);
 
+Route::post('/add',[CoffeController::class,'store'])->name('coffe.store');
+
 Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
+    return Inertia::render('Dashboard',[
+        
+    ]);
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::get('/coffe-menu',[CoffeController::class,'AllMenu'])->name('coffe.menu');
 
 
 Route::get('/blog',[PostController::class,'AllPost'])->middleware(['auth', 'verified'])->name('blog');

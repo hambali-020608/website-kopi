@@ -8,8 +8,10 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Category extends Model
 {
     protected $table='categories';
-    public function Post():HasMany
+    protected $fillable=['name'];
+    
+    public function Coffe():HasMany
     {
-        return $this->hasMany(Post::class,'category_id');
+        return $this->hasMany(Coffe::class,'category_id');
     }
 }

@@ -10,7 +10,7 @@ class Post extends Model
 {
     protected $table='posts';
     protected $fillable =['title','category_id','author_id','content'];
-    protected $with=['category','author'];
+    protected $with=['category','author',''];
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class,'category_id');

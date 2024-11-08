@@ -1,26 +1,37 @@
+import Menu from '@/Components/section/menu';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
-import { Head } from '@inertiajs/react';
+import MenuLayout from '@/Layouts/MenuLayout';
+import { Head, Link,usePage } from '@inertiajs/react';
 
 export default function Dashboard() {
+    const user = usePage().props.auth.user;
     return (
         <AuthenticatedLayout
             header={
                 <h2 className="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
-                    Dashboard
+                    Selamat Datang {user.name }
                 </h2>
             }
         >
             <Head title="Dashboard" />
+                
 
-            <div className="py-12">
-                <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
-                    <div className="overflow-hidden bg-white shadow-sm sm:rounded-lg dark:bg-gray-800">
-                        <div className="p-6 text-gray-900 dark:text-gray-100">
-                            You're logged in!
-                        </div>
-                    </div>
-                </div>
-            </div>
+                <MenuLayout title='Riwayat Pembelian'>
+                {
+                    
+                        user.coffe.map((c)=>{
+                            console.log(c)
+                            return(<>
+                            <Menu coffe={c} title='Riwayat'/>
+                            </>)
+                        })
+
+                }   
+                </MenuLayout>
+
+                
+            
+           
         </AuthenticatedLayout>
     );
 }
