@@ -14,7 +14,7 @@ export default function MenuPage({coffe,topCoffe}){
         {coffe.map((c)=>{
             return(
                 
-                <Menu coffe={c}/>
+                <Menu coffe={c} key={c.id}/>
             )
         })}
 
@@ -25,7 +25,7 @@ export default function MenuPage({coffe,topCoffe}){
         {topCoffe.map((top)=>{
             return(
                 
-                <Menu coffe={top} title="Popular Coffe"/>
+                <Menu key={top.id} coffe={top} title="Popular Coffe"/>
             )
         })}
 

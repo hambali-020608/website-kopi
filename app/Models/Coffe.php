@@ -25,4 +25,9 @@ public function buys()
     return $this->hasMany(Buy::class);
 }
 
+public function likes():BelongsToMany{
+    return $this -> belongsToMany(User::class,'likes','coffe_id','user_id');
+}
+
+
 }

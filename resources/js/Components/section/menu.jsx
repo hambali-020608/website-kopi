@@ -1,7 +1,7 @@
 export default function Menu({coffe,children,title="Menu"}){
     return(
 
-          <div class={`rounded-lg border border-[#EBB25B] ${title=="Menu"?'bg-[#4f2b14]':'bg-black'} p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800`}>
+          <div  class={`rounded-lg border border-[#EBB25B] ${title=="Menu"?'bg-[#4f2b14]':'bg-black'} p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800`}>
               <div class="h-56 w-full">
                 <a href="#">
                     <img  src="images/coffe.png" alt="coffe" />

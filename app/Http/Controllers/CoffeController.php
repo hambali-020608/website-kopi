@@ -30,7 +30,7 @@ public function AllMenu(){
         $query->select(FacadesDB::raw("SUM(quantity)"));
     }])
     ->orderByDesc('total_purchases')
-    ->take(2) // Misalnya, ambil 5 kopi teratas
+    ->take(2) // Misalnya, ambil 2 kopi teratas
     ->get();
     
     return Inertia::render('Menu',[
@@ -38,6 +38,15 @@ public function AllMenu(){
         'topCoffe'=>$topCoffees
     ]);
 
+
+    
+
+}
+public function LikeCoffe(Coffe $coffe){
+    if(!$coffe->likes()->where('user_id',auth()->user())->exists()){
+        $coffe->likes()->attach(auth()->id());
+    }
+return redirect()->back();
 }
 
 }

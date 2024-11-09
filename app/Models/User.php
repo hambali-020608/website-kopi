@@ -61,5 +61,7 @@ class User extends Authenticatable
 {
     return $this->belongsToMany(Coffe::class, 'buys')->withPivot('quantity');
 }
-
+public function likes():BelongsToMany{
+    return $this -> belongsToMany(Coffe::class,'likes','user_id','coffe_id');
+}
 }
