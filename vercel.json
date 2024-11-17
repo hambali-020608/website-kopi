@@ -29,6 +29,8 @@
         "DB_HOST": "o0bjg.h.filess.io",
         "DB_PORT": "3307",
         "DB_DATABASE": "coffeshop_volumemean",
-        "DB_USERNAME": "coffeshop_volumemean"
+        "DB_USERNAME": "coffeshop_volumemean",
+        "DB_PASSWORD": "665ca2857d9205684324a599a337152f13b70db1"
+
     }
 }
