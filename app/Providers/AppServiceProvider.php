@@ -39,5 +39,9 @@ class AppServiceProvider extends ServiceProvider
             // Admin bisa menghapus semua post, user biasa hanya post miliknya
             return $user->role === 'admin' || $user->id === $post->author_id;
         });
+        Gate::define('add-coffe', function (User $user) {
+            // Admin bisa menghapus semua post, user biasa hanya post miliknya
+            return $user->role === 'admin';
+        });
     }
 }

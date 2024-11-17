@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB as FacadesDB;
 use Inertia\Inertia;
 
+use function PHPUnit\Framework\returnSelf;
+
 class CoffeController extends Controller
 {
     public function store(Request $request)
@@ -32,10 +34,16 @@ public function AllMenu(){
     ->orderByDesc('total_purchases')
     ->take(2) // Misalnya, ambil 2 kopi teratas
     ->get();
+
+    $topLikeCoffes=Coffe::withCount(['likes as like'])
+    ->orderByDesc('like')
+    ->take(5)
+    ->get();
     
     return Inertia::render('Menu',[
         'coffe'=>$coffe,
-        'topCoffe'=>$topCoffees
+        'topCoffe'=>$topCoffees,
+        'topLikeCoffe'=>$topLikeCoffes
     ]);
 
 
@@ -47,6 +55,21 @@ public function LikeCoffe(Coffe $coffe){
         $coffe->likes()->attach(auth()->id());
     }
 return redirect()->back();
+}
+
+public function PostCoffe(){
+    return Inertia::render('AddCoffe');
+}
+
+public function CoffeStore(Request $request){
+    
+    Coffe::create([
+        'name'=>$request->name,
+        'price'=>$request->price,
+        'category_id'=>$request->category,
+    ]);
+    return redirect()->route('coffe.menu');
+
 }
 
 }

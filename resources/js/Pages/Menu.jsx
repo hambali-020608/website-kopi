@@ -2,15 +2,14 @@ import Menu from "@/Components/section/menu";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import MenuLayout from "@/Layouts/MenuLayout";
 
-export default function MenuPage({coffe,topCoffe}){
+export default function MenuPage({coffe,topCoffe,topLikeCoffe}){
     return(
     <>
-{console.log(topCoffe)}
+{console.log(topLikeCoffe)}
     <AuthenticatedLayout>
    
     <MenuLayout>
-      
-
+   
         {coffe.map((c)=>{
             return(
                 
@@ -23,6 +22,18 @@ export default function MenuPage({coffe,topCoffe}){
       
 
         {topCoffe.map((top)=>{
+            return(
+                
+                <Menu key={top.id} coffe={top} title="Popular Coffe"/>
+            )
+        })}
+
+    </MenuLayout>
+    
+    <MenuLayout title="Top Likes Coffe">
+      
+
+        {topLikeCoffe.map((top)=>{
             return(
                 
                 <Menu key={top.id} coffe={top} title="Popular Coffe"/>

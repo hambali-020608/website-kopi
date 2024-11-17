@@ -28,7 +28,6 @@ class PostController extends Controller
         }),
     ]);
         }
-
         public function SinglePost(Post $post) {
             $post->comments->transform(function ($comment) {
                 $comment->avatar = $comment->author->image 

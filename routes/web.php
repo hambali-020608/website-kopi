@@ -1,5 +1,5 @@
 <?php
-
+use Illuminate\Support\Facades\Gate as FacadesGate;
 use App\Http\Controllers\CoffeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
@@ -45,5 +45,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::post('/coffe/{coffe}/like',[CoffeController::class,'LikeCoffe'])->name('coffe.like');
 });
+
+Route::get('/add-coffe',[CoffeController::class,'PostCoffe'])->name('coffe.post');
+Route::post('/add-coffe',[CoffeController::class,'CoffeStore'])->name('coffe.add');
 
 require __DIR__.'/auth.php';

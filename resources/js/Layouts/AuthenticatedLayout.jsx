@@ -7,6 +7,7 @@ import { useState } from 'react';
 
 export default function AuthenticatedLayout({ header, children }) {
     const user = usePage().props.auth.user;
+    const can = usePage().props.can.AddCoffe
 
     const [showingNavigationDropdown, setShowingNavigationDropdown] =
         useState(false);
@@ -42,6 +43,14 @@ export default function AuthenticatedLayout({ header, children }) {
                                 >
                                     Menu
                                 </NavLink>
+
+                                {can?(
+                                    <NavLink href={route('coffe.post')}
+                                    active={route().current('coffe.post')} >
+                                        Add-Coffe
+
+                                    </NavLink>
+                                ): ''}
                             </div>
                         </div>
 
@@ -175,7 +184,7 @@ export default function AuthenticatedLayout({ header, children }) {
             </nav>
 
             {header && (
-                <header className="bg-white shadow dark:bg-gray-800">
+                <header className="bg-[#50392B] text-center shadow dark:bg-gray-800 ">
                     <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
                         {header}
                     </div>
