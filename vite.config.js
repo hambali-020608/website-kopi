@@ -9,15 +9,21 @@ export default defineConfig({
             refresh: true,
         }),
         react(),
-
     ],
     server: {
+       https:true,
         cors: {
-            origin: '*', // Ganti dengan asal yang diizinkan
+            origin: '*', // Ganti '*' dengan asal frontend Anda jika ada domain tertentu
             methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
             allowedHeaders: ['Content-Type', 'Authorization'],
-            credentials: true,
+            credentials: true, // Set ke true hanya jika server mendukung pengiriman cookie
         },
-        // port: 3000, // Anda dapat menyesuaikan port jika diperlukan
+    },
+    build: {
+        rollupOptions: {
+            output: {
+                publicPath: 'https://senja-kita.vercel.app/build/', // Pastikan path ini benar sesuai struktur file Laravel
+            },
+        },
     },
 });
