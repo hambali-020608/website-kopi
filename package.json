@@ -1,8 +1,7 @@
 {
     "private": true,
     "type": "module",
-    "proxy": "http://192.168.206.216:8000",
-    "engines": {"node": "20.x"},
+    "engines": {"node": "18.x"},
     
     "scripts": {
         "build": "vite build",
