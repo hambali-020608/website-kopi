@@ -13,7 +13,7 @@ use Inertia\Inertia;
 Route::get('/', function () {
     return Inertia::render('Welcome', [
         'title'=>"Home",
-        'coffe'=>Coffe::with(['likes','buys'])->get(),
+        // 'coffe'=>Coffe::with(['likes','buys'])->get(),
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
        

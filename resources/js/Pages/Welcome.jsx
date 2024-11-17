@@ -75,7 +75,7 @@ export default function Welcome({ coffe,auth}) {
             <Hero/>
             <About/>
 
-            <MenuLayout>
+            {/* <MenuLayout>
             {coffe.map((c)=>{
                console.log(c)
                  return(<div key={c.id}>
@@ -96,7 +96,7 @@ export default function Welcome({ coffe,auth}) {
                  </div>)
                 })}
         
-            </MenuLayout>
+            </MenuLayout> */}
 
             <Footer/>
           
