@@ -13,8 +13,8 @@
     "outputDirectory": "public",
     "env": {
         "APP_ENV": "production",
-        "APP_DEBUG": "false",
-        "APP_URL": "https://senja-kita.com",
+        "APP_DEBUG": "true",
+        "APP_URL": "https://senja-kita.vercel.app",
         "APP_KEY": "base64:umiLWqnbDrLy8PH5HrM0rxtGM1KlLP3kzkMUGWoVZG8=",
         "APP_CONFIG_CACHE": "/tmp/config.php",
         "APP_EVENTS_CACHE": "/tmp/events.php",
